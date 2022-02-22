@@ -1,10 +1,30 @@
+import { useState } from "react";
 import "./styles.css";
 
-export default function App() {
+const InputSelectBox = () => {
+  const [selectedValue, setSelectedValue] = useState("HTML");
+
+  //selectedValueを更新するhandleChange関数を宣言
+  const handleChange = (e) => {
+    setSelectedValue(e.target.value);
+  };
+
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <p>
+        現在選択されている値 :<b>{selectedValue}</b>
+      </p>
+
+      {/* onChangeでselectedValueの状態がvalueの値に更新される */}
+      <select value={selectedValue} onChange={handleChange}>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+      </select>
     </div>
   );
+};
+
+export default function App() {
+  return <InputSelectBox />;
 }
